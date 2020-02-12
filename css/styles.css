@@ -18,7 +18,7 @@ h1 {
   margin: 0 auto;
   font-family: "Major Mono Display", monospace;
   font-size: 48px;
-  margin: 2%;
+  margin: 1%;
   color: #813CA5;
 }
 
@@ -30,7 +30,7 @@ h1 {
 h2 {
   font-size: 36px;
   font-weight: lighter;
-  margin: 2%;
+  margin: 1%;
   color: #813CA5;
 }
 
@@ -120,4 +120,71 @@ h2 {
   line-height: 150px;
   user-select: none;
   width: 150px;
+}
+
+/*
+ * The X button sits just above the board.
+ */
+
+ #x-button {
+   background-color: #E1CCEC;
+   border: 1px solid #813CA5;
+   color: #813CA5;
+   font-size: 21px;
+   line-height: 55px;
+   margin: 1%;
+   text-align: center;
+   width: 228px;
+}
+
+/*
+ * The O button sits just above the board.
+ */
+
+ #o-button {
+   background-color: #E1CCEC;
+   border: 1px solid #813CA5;
+   color: #813CA5;
+   font-size: 21px;
+   line-height: 55px;
+   margin: 1%;
+   text-align: center;
+   width: 228px;
+}
+
+/*
+ * And a little flare when the user mouses over the button. The color scheme
+ * switches (background and foreground).
+ */
+
+#x-button:hover {
+  background-color: #813CA5;
+  color: #E1CCEC;
+  cursor: pointer;
+}
+
+/*
+ * And a little flare when the user mouses over the button. The color scheme
+ * switches (background and foreground).
+ */
+
+#o-button:hover {
+  background-color: #813CA5;
+  color: #E1CCEC;
+  cursor: pointer;
+}
+
+/*
+ * The score board sits just above the board.
+ */
+
+ #keep-score {
+   background-color: #E1CCEC;
+   border: 1px solid #813CA5;
+   color: #813CA5;
+   font-size: 21px;
+   line-height: 55px;
+   margin: 1%;
+   text-align: center;
+   width: 456px;
 }

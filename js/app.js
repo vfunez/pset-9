@@ -13,6 +13,9 @@ const winningConditions = [
 let board;
 let turn;
 let win;
+let xWin = 0;
+let tie = 0;
+let oWin = 0;
 ///////////////////// CACHED ELEMENT REFERENCES /////////////////////
 const squares = Array.from(document.querySelectorAll("#board div"));
 const message = document.querySelector("h2");
@@ -20,6 +23,8 @@ const message = document.querySelector("h2");
 window.onload = init;
 document.getElementById("board").onclick = takeTurn;
 document.getElementById("reset-button").onclick = init;
+document.getElementById("x-button").onclick = firstX;
+document.getElementById("o-button").onclick = firstO;
 ///////////////////// FUNCTIONS /////////////////////////////////////
 function init() {
   board = [
@@ -31,6 +36,14 @@ function init() {
   win = null;
 
   render();
+}
+function firstX() {
+  document.getElementById('switch').innerHTML = "Turn: X";
+  turn = "X";
+}
+function firstO() {
+  document.getElementById('switch').innerHTML = "Turn: O";
+  turn = "O";
 }
 function render() {
   board.forEach(function(mark, index) {
@@ -53,6 +66,10 @@ function takeTurn(e) {
 
       render();
     }
+    if (win === "T") {
+    tie++;
+    document.getElementById('tie-score').innerHTML = tie;
+    }
   }
 }
 function getWinner() {
@@ -68,5 +85,12 @@ function getWinner() {
     }
   });
 
+    if (winner === "X") {
+      xWin++;
+      document.getElementById('x-score').innerHTML = xWin;
+    } else if (winner === "O") {
+      oWin++;
+      document.getElementById('o-score').innerHTML = oWin;
+    }
   return winner ? winner : board.includes("") ? null : "T";
 }
