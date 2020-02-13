@@ -190,3 +190,35 @@ h2 {
    text-align: center;
    width: 456px;
 }
+
+/*
+ * The Red button sits just above the board.
+ */
+
+ #red-button {
+   background-color: #E1CCEC;
+   border: 1px solid #813CA5;
+   color: #813CA5;
+   font-size: 21px;
+   line-height: 55px;
+   margin: 1%;
+   text-align: center;
+   width: 228px;
+   outline: none;
+}
+
+/*
+ * The Yellow button sits just above the board.
+ */
+
+ #yellow-button {
+   background-color: #E1CCEC;
+   border: 1px solid #813CA5;
+   color: #813CA5;
+   font-size: 21px;
+   line-height: 55px;
+   margin: 1%;
+   text-align: center;
+   width: 228px;
+   outline: none;
+}
