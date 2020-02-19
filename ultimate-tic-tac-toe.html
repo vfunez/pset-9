@@ -22,26 +22,38 @@
 		<h1>ultimate | tic | tac | toe</h1>
 
 		<button id="x-button">X goes first</button>
-		<button id="o-button">O goes first</button>
+    <button id="o-button">O goes first</button>
 
-		<div class="container column">
-			<h2 id="switch">Turn: X</h2>
+    <div class="container column">
+      <h2 id="switch">Turn: X</h2>
 
-						<div id="reset-button">Play Again!</div>
+      <div class="container wrap" id="board">
+        <div class="square"></div>
+        <div class="square"></div>
+        <div class="square"></div>
+        <div class="square"></div>
+        <div class="square"></div>
+        <div class="square"></div>
+        <div class="square"></div>
+        <div class="square"></div>
+        <div class="square"></div>
+      </div>
 
-			<table id="keep-score">
-				<tr>
-					<th>Player X</th>
-					<th>Tie</th>
-					<th>Player O</th>
-				</tr>
-				<tr>
-					 <td id="x-score">0</td>
-					 <td id="tie-score">0</td>
-					 <td id="o-score">0</td>
-				</tr>
-			</table>
+      <div id="reset-button">Play Again!</div>
 
-		</div>
-		</body>
-		</html>
+      <table id="keep-score">
+        <tr>
+          <th>Player X</th>
+          <th>Tie</th>
+          <th>Player O</th>
+        </tr>
+        <tr>
+           <td id="x-score">0</td>
+           <td id="tie-score">0</td>
+           <td id="o-score">0</td>
+        </tr>
+      </table>
+
+    </div>
+  </body>
+</html>
