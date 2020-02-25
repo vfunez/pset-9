@@ -73,9 +73,9 @@ h2 {
 
 .square {
   border: 1px solid #813CA5;
-  height: 150px;
+  height: 71.25px;
   user-select: none;
-  width: 150px;
+  width: 60px;
   color: #813CA5
 }
 
@@ -112,14 +112,6 @@ h2 {
   background-color: #813CA5;
   color: #E1CCEC;
   cursor: pointer;
-}
-.square {
-  border: 1px solid #813CA5;
-  font-size: 96px;
-  height: 150px;
-  line-height: 150px;
-  user-select: none;
-  width: 150px;
 }
 
 /*
