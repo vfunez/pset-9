@@ -31,6 +31,7 @@ h2 {
   font-size: 36px;
   font-weight: lighter;
   margin: 1%;
+  margin-top: 0;
   color: #813CA5;
 }
 
@@ -63,30 +64,73 @@ h2 {
 
 .wrap {
   flex-wrap: wrap;              /* tells container to drop down once it reaches max-width */
-  height: 439.5px;
-  width: 434px;
+  height: 486px;
+  width: 567px;
 }
+
+/*
+ * This positions play buttons above the board, providing a little spacing.
+ */
+
+.cell-header-group {
+  margin-bottom: 0.5%;
+  width: 583px;
+}
+
+
 
 /*
  * The square itself. We give it a specific size and border.
  */
 
-.square {
-  border: 1px solid #813CA5;
-  height: 71.25px;
-  user-select: none;
-  width: 60px;
-  color: #813CA5
-}
+ /*
+  * The play buttons themselves, with size and spacing.
+  */
 
-/*
- * And we give it a little flare when the user mouses over a square.
- */
+ .cell-header {
+   cursor: pointer;
+   border: 1px solid #813CA5;
+   height: 25px;
+   line-height: 25px;
+   margin: 3px;
+   user-select: none;
+   width: 75px;
+   color: #813CA5;
+ }
 
-.square:hover {
-  background-color: #F1F1F6;
-  cursor: pointer;
-}
+ /*
+  * And we give it a little flare when the user mouses over a button.
+  */
+
+ .cell-header:hover {
+   background-color: #813CA5;
+   color: #E1CCEC;
+ }
+
+ /*
+  * The board is a shade of blue, which differentiates it from the
+  * circles and gives it a more realistic feel.
+  */
+
+ #board {
+   background-color: #E1CCEC;
+   border: 1px solid #813CA5;
+   padding: 7px;
+ }
+
+ /*
+  * The circles themselves have no background at first. The border radius
+  * is what makes these elements appear circular.
+  */
+
+ .cell {
+   background-color: ##E1CCEC;
+   border: 1px solid #813CA5;
+   border-radius: 50%;
+   height: 75px;
+   margin: 2px;
+   width: 75px;
+ }
 
 /*
  * The reset button sits just below the board.
@@ -100,7 +144,7 @@ h2 {
   line-height: 55px;
   margin: 1%;
   text-align: center;
-  width: 456px;
+  width: 583px;
 }
 
 /*
@@ -109,60 +153,6 @@ h2 {
  */
 
 #reset-button:hover {
-  background-color: #813CA5;
-  color: #E1CCEC;
-  cursor: pointer;
-}
-
-/*
- * The X button sits just above the board.
- */
-
- #x-button {
-   background-color: #E1CCEC;
-   border: 1px solid #813CA5;
-   color: #813CA5;
-   font-size: 21px;
-   line-height: 55px;
-   margin: 1%;
-   text-align: center;
-   width: 228px;
-   outline: none;
-}
-
-/*
- * The O button sits just above the board.
- */
-
- #o-button {
-   background-color: #E1CCEC;
-   border: 1px solid #813CA5;
-   color: #813CA5;
-   font-size: 21px;
-   line-height: 55px;
-   margin: 1%;
-   text-align: center;
-   width: 228px;
-   outline: none;
-}
-
-/*
- * And a little flare when the user mouses over the button. The color scheme
- * switches (background and foreground).
- */
-
-#x-button:hover {
-  background-color: #813CA5;
-  color: #E1CCEC;
-  cursor: pointer;
-}
-
-/*
- * And a little flare when the user mouses over the button. The color scheme
- * switches (background and foreground).
- */
-
-#o-button:hover {
   background-color: #813CA5;
   color: #E1CCEC;
   cursor: pointer;
@@ -180,7 +170,7 @@ h2 {
    line-height: 55px;
    margin: 1%;
    text-align: center;
-   width: 456px;
+   width: 583px;
 }
 
 /*
@@ -195,7 +185,7 @@ h2 {
    line-height: 55px;
    margin: 1%;
    text-align: center;
-   width: 228px;
+   width: 288px;
    outline: none;
 }
 
@@ -211,7 +201,7 @@ h2 {
    line-height: 55px;
    margin: 1%;
    text-align: center;
-   width: 228px;
+   width: 288px;
    outline: none;
 }
 
