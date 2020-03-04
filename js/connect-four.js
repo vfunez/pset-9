@@ -70,53 +70,45 @@ const winningConditions = [
   [40, 32, 24, 16],
   [41, 33, 25, 17],
 ];
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 ///////////////////// APP STATE (VARIABLES) /////////////////////////
 let board;
 let turn;
 let win;
-let xWin = 0;
+let redWin = 0;
 let tie = 0;
-let oWin = 0;
+let yellowWin = 0;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 ///////////////////// CACHED ELEMENT REFERENCES /////////////////////
 const squares = Array.from(document.querySelectorAll("#board div"));
 const message = document.querySelector("h2");
