@@ -34,6 +34,6 @@ h2 {
   color: #813CA5;
 }
 
-a {
+a, a:hover, a:visited, a:active {
   color: #813CA5
 }
