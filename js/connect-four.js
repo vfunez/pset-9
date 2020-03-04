@@ -56,9 +56,9 @@ const winningConditions = [
   [35, 29, 23, 17],
   [36, 30, 24, 18],
   [37, 31, 25, 19],
-  [38, 32, 26, 20]
-  [24, 16, 8, 0]
-  [25, 17, 9, 1]
+  [38, 32, 26, 20],
+  [24, 16, 8, 0],
+  [25, 17, 9, 1],
   [26, 18, 10, 2],
   [27, 19, 11, 3],
   [31, 23, 25, 7],
@@ -78,6 +78,8 @@ let redWin = 0;
 let tie = 0;
 let yellowWin = 0;
 let first;
+let f;
+let i;
 ///////////////////// CACHED ELEMENT REFERENCES /////////////////////
 const cells = Array.from(document.querySelectorAll("#board div"));
 const message = document.querySelector("h2");
