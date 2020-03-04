@@ -77,47 +77,38 @@ let win;
 let redWin = 0;
 let tie = 0;
 let yellowWin = 0;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 ///////////////////// CACHED ELEMENT REFERENCES /////////////////////
-const squares = Array.from(document.querySelectorAll("#board div"));
+const cells = Array.from(document.querySelectorAll("#board div"));
 const message = document.querySelector("h2");
 ///////////////////// EVENT LISTENERS ///////////////////////////////
 window.onload = init;
 document.getElementById("board").onclick = takeTurn;
 document.getElementById("reset-button").onclick = init;
-document.getElementById("x-button").onclick = firstX;
-document.getElementById("o-button").onclick = firstO;
+document.getElementById("red-button").onclick = firstRed;
+document.getElementById("yellow-button").onclick = firstYellow;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 ///////////////////// FUNCTIONS /////////////////////////////////////
 function init() {
   board = [
