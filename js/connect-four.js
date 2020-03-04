@@ -77,6 +77,7 @@ let win;
 let redWin = 0;
 let tie = 0;
 let yellowWin = 0;
+let first;
 ///////////////////// CACHED ELEMENT REFERENCES /////////////////////
 const cells = Array.from(document.querySelectorAll("#board div"));
 const message = document.querySelector("h2");
@@ -86,29 +87,6 @@ document.getElementById("board").onclick = takeTurn;
 document.getElementById("reset-button").onclick = init;
 document.getElementById("red-button").onclick = firstRed;
 document.getElementById("yellow-button").onclick = firstYellow;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 ///////////////////// FUNCTIONS /////////////////////////////////////
 function init() {
   board = [
@@ -119,65 +97,143 @@ function init() {
     "", "", "", "", "", "", "",
     "", "", "", "", "", "", ""
   ];
-  turn = "X";
+  turn = "Red";
   win = null;
 
   render();
 }
-function firstX() {
-  document.getElementById('switch').innerHTML = "Turn: X";
-  turn = "X";
-}
-function firstO() {
-  document.getElementById('switch').innerHTML = "Turn: O";
-  turn = "O";
-}
 function render() {
   board.forEach(function(mark, index) {
-    squares[index].textContent = mark;
+    cells[index].textContent = mark;
   });
 
   message.textContent =
     win === "T" ? "It's a tie!" : win ? `${win} wins!` : `Turn: ${turn}`;
 }
 function takeTurn(e) {
+  if (e.target.id == "board") {
+    return false;
+  }
   if (!win) {
-    let index = squares.findIndex(function(square) {
-      return square === e.target;
+    let index = cells.findIndex(function(cell) {
+      return cell === e.target;
     });
 
-    if (board[index] === "") {
-      board[index] = turn;
-      turn = turn === "X" ? "O" : "X";
-      win = getWinner();
+    let firstRow = index % 7;
 
-      render();
+    if (board[index] === "") {
+      while (board[index + 7] === "") {
+        let f = index + 7;
+        document.getElementById("cell" + f + "").classList.add(turn);
+        board[i] = turn;
+        document.getElementById("cell" + index + "").classList.remove(turn);
+        board[index] = "";
+        index = f;
     }
-    if (win === "T") {
-    tie++;
-    document.getElementById('tie-score').innerHTML = tie;
+    if (board[index] === "") {
+      document.getElementById("cell" + f + "").classList.add(turn);
+      board[index] = turn;
     }
   }
-}
+  else if (board[index] !== "") {
+        if (board[firstRow] === "") {
+          while (board[firstRow + 7] === "") {
+            let f = row1 + 7;
+            document.getElementById("cell" + f + "").classList.add(turn);
+            board[f] = turn;
+            document.getElementById("cell" + firstRow + "").classList.remove(turn);
+            board[firstRow] = "";
+            firstRow = f;
+    }
+    if (board[firstRow] === "") {
+            document.getElementById("cell" + firstRow + "").classList.add(turn);
+            board[firstRow] = turn;
+           }
+        }
+    }
+    if (board[firstRow] !== "") {
+        return false;
+      }
+    }
+    turn = turn === "Red" ? "Yellow" : "Red";
+    win = getWinner();
+      if (win === "T") {
+        tie++;
+        document.getElementById("tie-score").innerHTML = tie;
+      }
+      render();
+    }
 function getWinner() {
   let winner = null;
 
-  winningConditions.forEach(function(condition, index) {
-    if (
-      board[condition[0]] &&
-      board[condition[0]] === board[condition[1]] &&
-      board[condition[1]] === board[condition[2]]
-    ) {
-      winner = board[condition[0]];
-    }
-  });
+    winningConditions.forEach(function(condition, index) {
+      if (
+        board[condition[0]] &&
+        board[condition[0]] === board[condition[1]] &&
+        board[condition[1]] === board[condition[2]] &&
+        board[condition[2]] === board[condition[3]]
+      ) {
+        winner = board[condition[0]];
+      }
+    });
 
-    if (winner === "X") {
-      xWin++;
-      document.getElementById('x-score').innerHTML = xWin;
-    } else if (winner === "O") {
-      oWin++;
-      document.getElementById('o-score').innerHTML = oWin;
-    }
-  return winner ? winner : board.includes("") ? null : "T";
-}
+  //    if (winner === "Red") {
+    //    redWin++;
+    //    document.getElementById('red-score').innerHTML = redWin;
+  //    } else if (winner === "Yellow") {
+  //      yellowWin++;
+//        document.getElementById('yellow-score').innerHTML = redWin;
+  //    }
+    return winner ? winner : board.includes("") ? null : "T";
+  }
+//
+//
+//
+//
+//
+//
+  function playAgain() {
+    board.forEach(function(mark, index) {
+      if (cell[index].classList.contains("Red")) {
+        cell[index].classList.remove("Red")
+      }
+      if (cell[index].classList.contains("Yellow")) {
+        cell[index].classList.remove("Yellow")
+      }
+    });
+    init()
+  }
+
+  function resetScoreboard() {
+
+  }
+
+  function resetScoreboard() {
+    redWin = 0;
+    yellowWin = 0;
+    tie = 0;
+    document.getElementById("red-score").innerHTML = redWin;
+    document.getElementById("tie-score").innerHTML = tie;
+    document.getElementById("yellow-score").innerHTML = yellowWin;
+  }
+  function firstRed() {
+    init();
+    document.getElementById('switch').innerHTML = "Turn: Red";
+    turn = "Red";
+    first = "Red";
+  }
+  function firstYellow() {
+    init();
+    document.getElementById('switch').innerHTML = "Turn: Yellow";
+    turn = "Yellow";
+    first = "Yellow";
+  }
+  function resetScoreboard() {
+    redWin = 0;
+    yellowWin = 0;
+    tie = 0;
+
+    document.getElementById("redScore").innerHTML = redWin;
+    document.getElementById("tScore").innerHTML = tie;
+    document.getElementById("yellowScore").innerHTML = yellowWin;
+  }

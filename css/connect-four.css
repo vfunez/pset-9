@@ -68,45 +68,6 @@ h2 {
   width: 567px;
 }
 
-/*
- * This positions play buttons above the board, providing a little spacing.
- */
-
-.cell-header-group {
-  margin-bottom: 0.5%;
-  width: 583px;
-}
-
-
-
-/*
- * The square itself. We give it a specific size and border.
- */
-
- /*
-  * The play buttons themselves, with size and spacing.
-  */
-
- .cell-header {
-   cursor: pointer;
-   border: 1px solid #813CA5;
-   height: 25px;
-   line-height: 25px;
-   margin: 3px;
-   user-select: none;
-   width: 75px;
-   color: #813CA5;
- }
-
- /*
-  * And we give it a little flare when the user mouses over a button.
-  */
-
- .cell-header:hover {
-   background-color: #813CA5;
-   color: #E1CCEC;
- }
-
  /*
   * The board is a shade of blue, which differentiates it from the
   * circles and gives it a more realistic feel.
