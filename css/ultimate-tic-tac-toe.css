@@ -190,3 +190,6 @@ h2 {
    text-align: center;
    width: 456px;
 }
+a, a:hover, a:visited, a:active {
+  color: #813CA5
+}
