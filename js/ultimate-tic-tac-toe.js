@@ -9,8 +9,8 @@ var bricksPerColumn = 3;
 var xBricks = 100;
 var yBricks = 25;
 var brickPadding = 10;
-var brickOffsetTop = 50;
-var brickOffsetLeft = 30;
+var topOffSet = 50;
+var topOffSetTwo = 30;
 var x = canvas.width/2;
 var y = canvas.height-30;
 var xPaddle = 20;
@@ -73,8 +73,8 @@ function drawBricks() {
   for(var c=0; c<bricksPerColumn; c++) {
     for(var r=0; r<bricksPerRow; r++) {
       if(bricks[c][r].status == 1) {
-        var brickX = (r*(xBricks+brickPadding))+brickOffsetLeft;
-        var brickY = (c*(yBricks+brickPadding))+brickOffsetTop;
+        var brickX = (r*(xBricks+brickPadding))+topOffSetTwo;
+        var brickY = (c*(yBricks+brickPadding))+topOffSet;
         bricks[c][r].x = brickX;
         bricks[c][r].y = brickY;
         context.beginPath();
