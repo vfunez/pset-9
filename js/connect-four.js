@@ -193,7 +193,13 @@ function getWinner() {
       winner = board[condition[0]];
     }
   });
-
+  if (winner === "Red") {
+          redWins++;
+           document.getElementById('redScore').innerHTML = redWins;
+         } else if (winner === "Yellow") {
+           yellowWins++;
+           document.getElementById('yellowScore').innerHTML = yellowWins;
+      }
   return winner ? winner : board.includes("") ? null : "T";
 }
 
