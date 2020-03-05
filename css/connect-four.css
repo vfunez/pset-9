@@ -107,7 +107,7 @@ align-items: center;
   line-height: 55px;
   margin: 1%;
   text-align: center;
-  width: 456px;
+  width: 800px;
 }
 
 #reset-button:hover {
@@ -124,7 +124,7 @@ align-items: center;
   line-height: 55px;
   margin: 1%;
   text-align: center;
-  width: 583px;
+  width: 800px;
 }
 a, a:hover, a:visited, a:active {
   color: #813CA5
