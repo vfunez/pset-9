@@ -46,7 +46,7 @@ function hit() {
           b.status = 0;
           score++;
           if(score == bricksPerRow*bricksPerColumn) {
-            alert("YOU WIN!");
+            alert("YOU HAVE WON :)");
             document.location.reload();
           }
         }
@@ -119,7 +119,7 @@ function draw() {
     else {
       lives--;
       if(!lives) {
-        alert("GAME OVER");
+        alert("YOU HAVE LOST :(");
         document.location.reload();
       }
       else {
