@@ -2,7 +2,7 @@
 
 <html>
 	<head>
-		<title>Ultimate Tic-Tac-Toe</title>
+		<title>Brick Breaker</title>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<meta http-equiv="X-UA-Compatible" content="ie=edge" />
@@ -19,41 +19,14 @@
 						<a class="header" href="connect-four.html">Connect Four</a>
 						<a class="header" href="brick-breaker.html">Brick Breaker</a>
 
-		<h1>brick | brealer</h1>
+		<h1>brick | breaker</h1>
 
-		<button id="x-button">X goes first</button>
-    <button id="o-button">O goes first</button>
+		<style>
+		    	* { padding: 0; margin: 0; }
+		    	canvas { background: #E1CCEC; display: block; margin: 0 auto; border: 1px solid #813CA5;}
+		    </style>
+				
+		<canvas id="board" width = "900" height = "420"></canvas>
 
-    <div class="container column">
-      <h2 id="switch">Turn: X</h2>
-
-      <div class="container wrap" id="board">
-        <div class="square"></div>
-        <div class="square"></div>
-        <div class="square"></div>
-        <div class="square"></div>
-        <div class="square"></div>
-        <div class="square"></div>
-        <div class="square"></div>
-        <div class="square"></div>
-        <div class="square"></div>
-      </div>
-
-      <div id="reset-button">Play Again!</div>
-
-      <table id="keep-score">
-        <tr>
-          <th>Player X</th>
-          <th>Tie</th>
-          <th>Player O</th>
-        </tr>
-        <tr>
-           <td id="x-score">0</td>
-           <td id="tie-score">0</td>
-           <td id="o-score">0</td>
-        </tr>
-      </table>
-
-    </div>
   </body>
 </html>
