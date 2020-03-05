@@ -21,77 +21,147 @@ var yAxis = -2;
 var rightPressed = false;
 var leftPressed = false;
 ///////////////////// EVENT LISTENERS ///////////////////////////////
-window.onload = init;
-document.getElementById("board").onclick = takeTurn;
-document.getElementById("reset-button").onclick = init;
-document.getElementById("x-button").onclick = firstX;
-document.getElementById("o-button").onclick = firstO;
+document.addEventListener("keydown", keyDownHandler, false);
+document.addEventListener("keyup", keyUpHandler, false);
+document.addEventListener("mousemove", mouseMoveHandler, false);
 ///////////////////// FUNCTIONS /////////////////////////////////////
-function init() {
-  board = [
-    "", "", "",
-    "", "", "",
-    "", "", ""
-  ];
-  turn = "X";
-  win = null;
-
-  render();
+var bricks = [];
+for(var c=0; c<brickColumnCount; c++) {
+  bricks[c] = [];
+  for(var r=0; r<brickRowCount; r++) {
+    bricks[c][r] = { x: 0, y: 0, status: 1 };
+  }
 }
-function firstX() {
-  document.getElementById('switch').innerHTML = "Turn: X";
-  turn = "X";
-}
-function firstO() {
-  document.getElementById('switch').innerHTML = "Turn: O";
-  turn = "O";
-}
-function render() {
-  board.forEach(function(mark, index) {
-    squares[index].textContent = mark;
-  });
-
-  message.textContent =
-    win === "T" ? "It's a tie!" : win ? `${win} wins!` : `Turn: ${turn}`;
-}
-function takeTurn(e) {
-  if (!win) {
-    let index = squares.findIndex(function(square) {
-      return square === e.target;
-    });
-
-    if (board[index] === "") {
-      board[index] = turn;
-      turn = turn === "X" ? "O" : "X";
-      win = getWinner();
-
-      render();
+function keyDownHandler(e) {
+    if(e.key == "Right" || e.key == "ArrowRight") {
+        rightPressed = true;
     }
-    if (win === "T") {
-    tie++;
-    document.getElementById('tie-score').innerHTML = tie;
+    else if(e.key == "Left" || e.key == "ArrowLeft") {
+        leftPressed = true;
+    }
+}
+
+function keyUpHandler(e) {
+    if(e.key == "Right" || e.key == "ArrowRight") {
+        rightPressed = false;
+    }
+    else if(e.key == "Left" || e.key == "ArrowLeft") {
+        leftPressed = false;
+    }
+}
+
+function mouseMoveHandler(e) {
+  var relativeX = e.clientX - canvas.offsetLeft;
+  if(relativeX > 0 && relativeX < canvas.width) {
+    paddleX = relativeX - yPaddle/2;
+  }
+}
+function collisionDetection() {
+  for(var c=0; c<brickColumnCount; c++) {
+    for(var r=0; r<brickRowCount; r++) {
+      var b = bricks[c][r];
+      if(b.status == 1) {
+        if(x > b.x && x < b.x+brickWidth && y > b.y && y < b.y+brickHeight) {
+          yAxis = -yAxis;
+          b.status = 0;
+          score++;
+          if(score == brickRowCount*brickColumnCount) {
+            alert("YOU WIN!");
+            document.location.reload();
+          }
+        }
+      }
     }
   }
 }
-function getWinner() {
-  let winner = null;
 
-  winningConditions.forEach(function(condition, index) {
-    if (
-      board[condition[0]] &&
-      board[condition[0]] === board[condition[1]] &&
-      board[condition[1]] === board[condition[2]]
-    ) {
-      winner = board[condition[0]];
-    }
-  });
-
-    if (winner === "X") {
-      xWin++;
-      document.getElementById('x-score').innerHTML = xWin;
-    } else if (winner === "O") {
-      oWin++;
-      document.getElementById('o-score').innerHTML = oWin;
-    }
-  return winner ? winner : board.includes("") ? null : "T";
+function drawBall() {
+  context.beginPath();
+  context.arc(x, y, ball, 0, Math.PI*2);
+  context.fillStyle = "#813CA5";
+  context.fill();
+  context.closePath();
 }
+function drawPaddle() {
+  context.beginPath();
+  context.rect(paddleX, canvas.height-xPaddle, yPaddle, xPaddle);
+  context.fillStyle = "#813CA5";
+  context.fill();
+  context.closePath();
+}
+function drawBricks() {
+  for(var c=0; c<brickColumnCount; c++) {
+    for(var r=0; r<brickRowCount; r++) {
+      if(bricks[c][r].status == 1) {
+        var brickX = (r*(brickWidth+brickPadding))+brickOffsetLeft;
+        var brickY = (c*(brickHeight+brickPadding))+brickOffsetTop;
+        bricks[c][r].x = brickX;
+        bricks[c][r].y = brickY;
+        context.beginPath();
+        context.rect(brickX, brickY, brickWidth, brickHeight);
+        context.fillStyle = "#813CA5";
+        context.fill();
+        context.closePath();
+      }
+    }
+  }
+}
+function drawScore() {
+  context.font = "16px Times New Roman";
+  context.fillStyle = "#813CA5";
+  context.fillText("Score: "+score, 8, 20);
+}
+function drawLives() {
+  context.font = "16px Times New Roman";
+  context.fillStyle = "#813CA5";
+  context.fillText("Lives: "+lives, canvas.width-65, 20);
+}
+
+function draw() {
+  context.clearRect(0, 0, canvas.width, canvas.height);
+  drawBricks();
+  drawBall();
+  drawPaddle();
+  drawScore();
+  drawLives();
+  collisionDetection();
+
+  if(x + xAxis > canvas.width-ball || x + xAxis < ball) {
+    xAxis = -xAxis;
+  }
+  if(y + yAxis < ball) {
+    yAxis = -yAxis;
+  }
+  else if(y + yAxis > canvas.height-ball) {
+    if(x > paddleX && x < paddleX + yPaddle) {
+      yAxis = -yAxis;
+    }
+    else {
+      lives--;
+      if(!lives) {
+        alert("GAME OVER");
+        document.location.reload();
+      }
+      else {
+        x = canvas.width/2;
+        y = canvas.height-30;
+        xAxis = 3;
+        yAxis = -3;
+        paddleX = (canvas.width-yPaddle)/2;
+      }
+    }
+  }
+
+  if(rightPressed && paddleX < canvas.width-yPaddle) {
+    paddleX += 7;
+  }
+  else if(leftPressed && paddleX > 0) {
+    paddleX -= 7;
+  }
+
+  x += xAxis;
+  y += yAxis;
+  requestAnimationFrame(draw);
+}
+
+draw();
