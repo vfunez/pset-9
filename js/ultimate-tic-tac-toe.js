@@ -21,7 +21,7 @@ var yAxis = -2;
 var rightPressed = false;
 var leftPressed = false;
 ///////////////////// EVENT LISTENERS ///////////////////////////////
-document.addEventListener("mousemove", mouseMoveHandler, false);
+document.addEventListener("mousemove", mouse, false);
 ///////////////////// FUNCTIONS /////////////////////////////////////
 var bricks = [];
 for(var c=0; c<brickColumnCount; c++) {
@@ -30,13 +30,13 @@ for(var c=0; c<brickColumnCount; c++) {
     bricks[c][r] = { x: 0, y: 0, status: 1 };
   }
 }
-function mouseMoveHandler(e) {
+function mouse(e) {
   var relativeX = e.clientX - canvas.offsetLeft;
   if(relativeX > 0 && relativeX < canvas.width) {
     paddleX = relativeX - yPaddle/2;
   }
 }
-function collisionDetection() {
+function hit() {
   for(var c=0; c<brickColumnCount; c++) {
     for(var r=0; r<brickRowCount; r++) {
       var b = bricks[c][r];
@@ -104,7 +104,7 @@ function draw() {
   drawPaddle();
   drawScore();
   drawLives();
-  collisionDetection();
+  hit();
 
   if(x + xAxis > canvas.width-ball || x + xAxis < ball) {
     xAxis = -xAxis;
