@@ -107,12 +107,12 @@ function drawBricks() {
   }
 }
 function drawScore() {
-  context.font = "16px Times New Roman";
+  context.font = "16px Major Mono Display";
   context.fillStyle = "#813CA5";
   context.fillText("Score: "+score, 8, 20);
 }
 function drawLives() {
-  context.font = "16px Times New Roman";
+  context.font = "16px Major Mono Display";
   context.fillStyle = "#813CA5";
   context.fillText("Lives: "+lives, canvas.width-65, 20);
 }
