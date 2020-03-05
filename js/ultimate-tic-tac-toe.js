@@ -18,8 +18,8 @@ var yPaddle = 100;
 var paddleX = (canvas.width-yPaddle)/2;
 var xAxis = 2;
 var yAxis = -2;
-var rightPressed = false;
-var leftPressed = false;
+var pressRight = false;
+var pressLeft = false;
 ///////////////////// EVENT LISTENERS ///////////////////////////////
 document.addEventListener("mousemove", mouse, false);
 ///////////////////// FUNCTIONS /////////////////////////////////////
@@ -132,10 +132,10 @@ function draw() {
     }
   }
 
-  if(rightPressed && paddleX < canvas.width-yPaddle) {
+  if(pressRight && paddleX < canvas.width-yPaddle) {
     paddleX += 7;
   }
-  else if(leftPressed && paddleX > 0) {
+  else if(pressLeft && paddleX > 0) {
     paddleX -= 7;
   }
 
