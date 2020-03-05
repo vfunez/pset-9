@@ -6,8 +6,8 @@ var lives = 3;
 var ball = 15;
 var bricksPerRow = 8;
 var bricksPerColumn = 3;
-var brickWidth = 100;
-var brickHeight = 25;
+var xBricks = 100;
+var yBricks = 25;
 var brickPadding = 10;
 var brickOffsetTop = 50;
 var brickOffsetLeft = 30;
@@ -41,7 +41,7 @@ function hit() {
     for(var r=0; r<bricksPerRow; r++) {
       var b = bricks[c][r];
       if(b.status == 1) {
-        if(x > b.x && x < b.x+brickWidth && y > b.y && y < b.y+brickHeight) {
+        if(x > b.x && x < b.x+xBricks && y > b.y && y < b.y+yBricks) {
           yAxis = -yAxis;
           b.status = 0;
           score++;
@@ -73,12 +73,12 @@ function drawBricks() {
   for(var c=0; c<bricksPerColumn; c++) {
     for(var r=0; r<bricksPerRow; r++) {
       if(bricks[c][r].status == 1) {
-        var brickX = (r*(brickWidth+brickPadding))+brickOffsetLeft;
-        var brickY = (c*(brickHeight+brickPadding))+brickOffsetTop;
+        var brickX = (r*(xBricks+brickPadding))+brickOffsetLeft;
+        var brickY = (c*(yBricks+brickPadding))+brickOffsetTop;
         bricks[c][r].x = brickX;
         bricks[c][r].y = brickY;
         context.beginPath();
-        context.rect(brickX, brickY, brickWidth, brickHeight);
+        context.rect(brickX, brickY, xBricks, yBricks);
         context.fillStyle = "#813CA5";
         context.fill();
         context.closePath();
