@@ -74,9 +74,9 @@ const winningConditions = [
 let board;
 let turn;
 let win;
-let redWins = 0;
-let yellowWins = 0;
-let ties = 0;
+let redWin = 0;
+let tie = 0;
+let yellowWin = 0;
 let first;
 ///////////////////// CACHED ELEMENT REFERENCES /////////////////////
 const cells = Array.from(document.querySelectorAll("#board div"));
@@ -102,7 +102,6 @@ function init() {
 
   render();
 }
-
 function render() {
   board.forEach(function(mark, index) {
     cells[index].textContent = mark;
@@ -111,9 +110,7 @@ function render() {
   message.textContent =
     win === "T" ? "It's a tie!" : win ? `${win} wins!` : `Turn: ${turn}`;
 }
-
 function takeTurn(e) {
-
   if (e.target.id == "board") {
     return false;
   }
@@ -122,10 +119,8 @@ function takeTurn(e) {
       return cell === e.target;
     });
 
-    let row1 = index % 7;
-
+    let firstRow = index % 7;
     if (board[index] === "") {
-
       while (board[index + 7] === "") {
         let i = index + 7;
         document.getElementById("cell" + i + "").classList.add(turn);
@@ -133,56 +128,42 @@ function takeTurn(e) {
         document.getElementById("cell" + index + "").classList.remove(turn);
         board[index] = "";
         index = i;
-
       }
       if (board[index] === "") {
         document.getElementById("cell" + index + "").classList.add(turn);
         board[index] = turn;
-
       }
-
-      }
+    }
       else if (board[index] !== "") {
-        if (board[row1] === "") {
-          while (board[row1 + 7] === "") {
-            let i = row1 + 7;
+        if (board[firstRow] === "") {
+          while (board[firstRow + 7] === "") {
+            let i = firstRow + 7;
             document.getElementById("cell" + i + "").classList.add(turn);
             board[i] = turn;
-            document.getElementById("cell" + row1 + "").classList.remove(turn);
-            board[row1] = "";
-            row1 = i;
-
+            document.getElementById("cell" + firstRow + "").classList.remove(turn);
+            board[firstRow] = "";
+            firstRow = i;
           }
-          if (board[row1] === "") {
-            document.getElementById("cell" + row1 + "").classList.add(turn);
-            board[row1] = turn;
-
+          if (board[firstRow] === "") {
+            document.getElementById("cell" + firstRow + "").classList.add(turn);
+            board[firstRow] = turn;
           }
-
         }
       }
-      if (board[row1] !== "") {
+      if (board[firstRow] !== "") {
         return false;
-
       }
-
       }
-
       turn = turn === "Red" ? "Yellow" : "Red";
       win = getWinner();
       if (win === "T") {
-        ties++;
-        document.getElementById("tScore").innerHTML = ties;
+        tie++;
+        document.getElementById("tie-score").innerHTML = tie;
       }
-
       render();
     }
-
-
-
 function getWinner() {
   let winner = null;
-
   winningConditions.forEach(function(condition, index) {
     if (
       board[condition[0]] &&
@@ -193,16 +174,16 @@ function getWinner() {
       winner = board[condition[0]];
     }
   });
+
   if (winner === "Red") {
-          redWins++;
-           document.getElementById('redScore').innerHTML = redWins;
+          redWin++;
+           document.getElementById('red-score').innerHTML = redWin;
          } else if (winner === "Yellow") {
-           yellowWins++;
-           document.getElementById('yellowScore').innerHTML = yellowWins;
+           yellowWin++;
+           document.getElementById('yellow-score').innerHTML = yellowWin;
       }
   return winner ? winner : board.includes("") ? null : "T";
 }
-
 function playAgain() {
   board.forEach(function(mark, index) {
     if (cells[index].classList.contains("Red")) {
@@ -212,48 +193,34 @@ function playAgain() {
       cells[index].classList.remove("Yellow")
     }
   });
+
   init()
 }
-
-function resetScoreboard() {
-
+function resets() {
+  redWin = 0;
+  yellowWin = 0;
+  tie = 0;
+  document.getElementById("red-score").innerHTML = redWin;
+  document.getElementById("tie-score").innerHTML = tie;
+  document.getElementById("yellow-score").innerHTML = yellowWin;
 }
-
-function resetScoreboard() {
-  redWins = 0;
-  yellowWins = 0;
-  ties = 0;
-
-  document.getElementById("redScore").innerHTML = redWins;
-  document.getElementById("tScore").innerHTML = ties;
-  document.getElementById("yellowScore").innerHTML = yellowWins;
-}
-
 function redFirst(){
   init();
-
   document.getElementById("turn").innerHTML = "Turn: Red";
   turn = "Red";
   first = "Red"
-
-
 }
-
 function yellowFirst(){
   init();
-
   document.getElementById("turn").innerHTML = "Turn: Yellow";
   turn = "Yellow";
   first = "Yellow"
-
 }
-
-function resetScoreboard() {
-    redWins = 0;
-    yellowWins = 0;
-    ties = 0;
-
-    document.getElementById("redScore").innerHTML = redWins;
-    document.getElementById("tScore").innerHTML = ties;
-    document.getElementById("yellowScore").innerHTML = yellowWins;
+function reset() {
+    redWin = 0;
+    yellowWin = 0;
+    tie = 0;
+    document.getElementById("red-score").innerHTML = redWin;
+    document.getElementById("tie-score").innerHTML = tie;
+    document.getElementById("yellow-score").innerHTML = yellowWin;
   }

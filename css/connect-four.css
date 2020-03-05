@@ -45,12 +45,12 @@ align-items: center;
 }
 
 .Red {
-  background-color: #ed3b3b;
+  background-color: #FF0000;
   color: transparent;
 }
 
 .Yellow {
-  background-color: #f5ef38;
+  background-color: #FFFF00;
   color: transparent;
 }
 
@@ -99,7 +99,7 @@ align-items: center;
   cursor: pointer;
 }
 
-#reset-button {               //come back to this
+#reset-button {
   background-color: #E1CCEC;
   border: 1px solid #813CA5;
   color: #813CA5;
